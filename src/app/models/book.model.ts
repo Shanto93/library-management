@@ -13,7 +13,8 @@ const bookSchema = new mongoose.Schema(
       trim: true,
     },
     genre: {
-      type: [
+      type: String,
+      enum: [
         "FICTION",
         "NON_FICTION",
         "SCIENCE",
@@ -27,7 +28,7 @@ const bookSchema = new mongoose.Schema(
     isbn: {
       type: String,
       required: [true, "ISBN is required"],
-      unique: true,
+      unique: [true, "ISBN must be unique"],
       trim: true,
     },
     description: {
