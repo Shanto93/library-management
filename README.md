@@ -2,6 +2,12 @@
 
 A RESTful API built with **Express**, **TypeScript**, and **MongoDB** (via **Mongoose**) for managing a library system — including books and borrow transactions. This API ensures proper business logic, such as inventory availability during borrowing, and supports aggregation reporting.
 
+## Live API Demo
+
+Access the live API (Deployed at):  
+[Click Here For Live](https://library-management-eta-rose.vercel.app/)
+
+
 ## Features
 
 * Book creation, retrieval, update, and deletion
