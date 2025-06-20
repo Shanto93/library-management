@@ -41,3 +41,45 @@ borrowRoutes.post("/", async (req: Request, res: Response): Promise<void> => {
     handleValidationError(error, res, "Error borrowing book");
   }
 });
+
+
+// Borrowed Books Aggregation
+borrowRoutes.get("/", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const summary = await Borrow.aggregate([
+      {
+        $group: {
+          _id: "$book",
+          totalQuantity: { $sum: "$quantity" },
+        },
+      },
+      {
+        $lookup: {
+          from: "books",
+          localField: "_id",
+          foreignField: "_id",
+          as: "bookDetails",
+        },
+      },
+      { $unwind: "$bookDetails" },
+      {
+        $project: {
+          book: {
+            title: "$bookDetails.title",
+            isbn: "$bookDetails.isbn",
+          },
+          totalQuantity: 1,
+          _id: false
+        },
+      },
+    ]);
+
+    res.status(200).json({
+      success: true,
+      message: "Borrowed books summary retrieved successfully",
+      data: summary,
+    });
+  } catch (error: any) {
+    handleValidationError(error, res, "Error fetching borrow summary");
+  }
+});
