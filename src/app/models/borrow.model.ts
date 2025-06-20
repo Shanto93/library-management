@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
-import type { IBorrow } from "../interfaces/borrow.interface";
+import type { BorrowModel, IBorrow } from "../interfaces/borrow.interface";
 
-const borrowSchema = new mongoose.Schema<IBorrow>(
+const borrowSchema = new Schema<IBorrow, BorrowModel>(
   {
     book: {
       type: Schema.Types.ObjectId,
@@ -24,4 +24,8 @@ const borrowSchema = new mongoose.Schema<IBorrow>(
   }
 );
 
-const Borrow = mongoose.model<IBorrow>("Borrow", borrowSchema);
+export const Borrow = mongoose.model<IBorrow, BorrowModel>(
+  "Borrow",
+  borrowSchema
+);
+

@@ -19,3 +19,11 @@ export interface IBook {
 export interface BookStatic extends Model<IBook> {
   postDoc(title: string): string;
 }
+
+export interface BookStatic extends Model<IBook> {
+  postDoc(title: string): Promise<string>;
+  updateCopiesAndAvailability(
+    bookId: string,
+    quantity: number
+  ): Promise<IBook | "NOT_ENOUGH_COPIES" | null>;
+}

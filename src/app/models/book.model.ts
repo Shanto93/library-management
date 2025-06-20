@@ -51,6 +51,23 @@ const bookSchema = new mongoose.Schema<IBook, BookStatic>(
   }
 );
 
+bookSchema.static("updateCopiesAndAvailability", async function (bookId: string, quantity: number) {
+  const book = await this.findById(bookId);
+  if (!book) return null;
+
+  if (book.copies < quantity) {
+    return "NOT_ENOUGH_COPIES";
+  }
+
+  book.copies -= quantity;
+  if (book.copies === 0) {
+    book.available = false;
+  }
+
+  await book.save();
+  return book;
+});
+
 bookSchema.static("postDoc", async function (title: string): Promise<string> {
   return title;
 });
