@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import type { IBook } from "../interfaces/book.interfaces";
+import mongoose, { type Model } from "mongoose";
+import type { BookStatic, IBook } from "../interfaces/book.interfaces";
 
-const bookSchema = new mongoose.Schema<IBook>(
+const bookSchema = new mongoose.Schema<IBook, BookStatic>(
   {
     title: {
       type: String,
@@ -51,6 +51,10 @@ const bookSchema = new mongoose.Schema<IBook>(
   }
 );
 
+bookSchema.static("postDoc", async function (title: string): Promise<string> {
+  return title;
+});
+
 bookSchema.post("findOneAndDelete", function (doc, next) {
   if (doc) {
     console.log(`Book with ID ${doc._id} was deleted`);
@@ -60,4 +64,4 @@ bookSchema.post("findOneAndDelete", function (doc, next) {
   next();
 });
 
-export const Book = mongoose.model<IBook>("Book", bookSchema);
+export const Book = mongoose.model<IBook, BookStatic>("Book", bookSchema);
