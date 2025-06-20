@@ -36,6 +36,43 @@ A RESTful API built with **Express**, **TypeScript**, and **MongoDB** (via **Mon
 ### Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/library-management-api.git
+https://github.com/Shanto93/library-management.git
 cd library-management-api
+```
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Setup Environment
+
+1. Create a `.env` file at the root of your project directory.
+
+2. Add the following environment variables:
+
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/library
+```
+### Run the Server
+
+#### Development Mode
+
+Start the server with hot reloading using `ts-node-dev`:
+
+```bash
+npm run dev
+```
+#### Production Mode
+
+1. Build the TypeScript files:
+
+```bash
+npm run build
+```
+2. Start the compiled JavaScript with Node.js:
+
+```bash
+npm start
 ```
