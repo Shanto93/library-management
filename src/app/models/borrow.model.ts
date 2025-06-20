@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import type { IBorrow } from "../interfaces/borrow.interface";
 
-const borrowSchema = new mongoose.Schema(
+const borrowSchema = new mongoose.Schema<IBorrow>(
   {
     book: {
       type: Schema.Types.ObjectId,
@@ -23,4 +24,4 @@ const borrowSchema = new mongoose.Schema(
   }
 );
 
-const Borrow = mongoose.model("Borrow", borrowSchema);
+const Borrow = mongoose.model<IBorrow>("Borrow", borrowSchema);
