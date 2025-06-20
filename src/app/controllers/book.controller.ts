@@ -70,3 +70,18 @@ bookRoutes.patch("/:bookId", async (req: Request, res: Response) => {
     handleValidationError(error, res, "Error updating book");
   }
 });
+
+// Delete a book
+bookRoutes.delete("/:bookId", async (req: Request, res: Response) => {
+  const bookId = req.params.bookId;
+  try {
+    await Book.findByIdAndDelete(bookId);
+    res.status(200).json({
+      success: true,
+      message: "Book deleted successfully",
+      data: null,
+    });
+  } catch (error: any) {
+    handleValidationError(error, res, "Error deleting book");
+  }
+});

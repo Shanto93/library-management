@@ -51,4 +51,13 @@ const bookSchema = new mongoose.Schema<IBook>(
   }
 );
 
+bookSchema.post("findOneAndDelete", function (doc, next) {
+  if (doc) {
+    console.log(`Book with ID ${doc._id} was deleted`);
+  } else {
+    console.log("No book found to delete.");
+  }
+  next();
+});
+
 export const Book = mongoose.model<IBook>("Book", bookSchema);
