@@ -76,3 +76,41 @@ npm run build
 ```bash
 npm start
 ```
+
+## API Endpoints
+
+### Books
+
+| Method | Endpoint               | Description                     |
+|--------|------------------------|---------------------------------|
+| POST   | `/api/books`           | Create a new book               |
+| GET    | `/api/books`           | Get all books (with filters)    |
+| GET    | `/api/books/:bookId`   | Get a single book by ID         |
+| PATCH  | `/api/books/:bookId`   | Update a book by ID             |
+| DELETE | `/api/books/:bookId`   | Delete a book by ID             |
+
+#### Query Parameters for `/api/books`
+
+- `filter` – Filter books by genre (e.g., `?filter=fiction`)
+- `sortBy` – Sort by a field (e.g., `?sortBy=title`)
+- `sort` – Order of sort: `asc` or `desc` (e.g., `?sort=desc`)
+- `limit` – Limit the number of results (e.g., `?limit=5`)
+
+---
+
+### Borrow
+
+| Method | Endpoint         | Description                               |
+|--------|------------------|-------------------------------------------|
+| POST   | `/api/borrow`    | Borrow a book (with availability check)   |
+| GET    | `/api/borrow`    | Get a summary of all borrowed books       |
+
+#### Sample POST `/api/borrow` Request Body
+
+```json
+{
+  "book": "BOOK_ID_HERE",
+  "quantity": 1,
+  "dueDate": "2025-07-01"
+}
+
