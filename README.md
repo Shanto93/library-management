@@ -113,4 +113,59 @@ npm start
   "quantity": 1,
   "dueDate": "2025-07-01"
 }
+```
 
+## Aggregation Summary
+
+The `GET /api/borrow` endpoint returns an aggregated summary of all borrowed books, grouped by book ID, with the total quantity borrowed for each title.
+
+### Aggregation Logic
+
+- Groups borrowed records by book ID
+- Calculates total quantity borrowed per book
+- Joins with the `books` collection to include book details
+- Returns a simplified view with book title, ISBN, and total quantity
+
+### Sample Response
+
+```json
+[
+  {
+    "book": {
+      "title": "Clean Code",
+      "isbn": "1234567890"
+    },
+    "totalQuantity": 4
+  },
+  {
+    "book": {
+      "title": "Atomic Habits",
+      "isbn": "9876543210"
+    },
+    "totalQuantity": 2
+  }
+]
+```
+
+## Error Handling
+
+All API endpoints return consistent and descriptive error responses when validation fails or resources are not found.
+
+### Error Response Format
+
+```json
+{
+  "success": false,
+  "message": "Error message here",
+  "error": "Detailed error information"
+}
+```
+
+## Author
+
+Developed by **Shanto Islam**
+
+Feel free to connect:  
+- [GitHub](https://github.com/Shanto93)  
+- [LinkedIn](https://www.linkedin.com/in/shanta93/)  
+- [Email](mailto:shantoislam7363@gmail.com)
