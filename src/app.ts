@@ -10,5 +10,5 @@ app.use("/api/books", bookRoutes);
 app.use("/api/borrow", borrowRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Welcome to library management website!");
 });
